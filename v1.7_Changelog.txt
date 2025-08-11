@@ -33,83 +33,90 @@ web standards with critical security fixes and modern Perl compatibility.
 	• Enhanced password validation with complexity requirements
 	• Added HTTPS support to valid referers
 	• Strengthened indexer access controls
+	
+6.	FIXED: Missing search input validation vulnerability
+	- Added validate_search_input() function to sanitize user search queries  
+	- Added script injection protection against <script>, javascript:, and vbscript: attempts
+	- Filtered dangerous control characters while preserving search functionality
+	- Protected against XSS attacks through search form input
+	- Maintained compatibility with boolean search operators (+required, -excluded)
 
 == PERL MODERNIZATION ==
 
-6.	ADDED: Modern Perl compatibility (5.20+ to 5.38+)
+7.	ADDED: Modern Perl compatibility (5.20+ to 5.38+)
 	• Added "use strict" and "use warnings" to all scripts
 	• Fixed deprecated syntax and undefined variables
 	• Updated to current Perl best practices
 
-7.	ENHANCED: CGI.pm compatibility checking
+8.	ENHANCED: CGI.pm compatibility checking
 	• Added automatic detection of CGI.pm availability
 	• Provided helpful error messages for missing module
 	• Maintained backward compatibility with existing installations
 
-8.	UPDATED: File permissions for better security
+9.	UPDATED: File permissions for better security
 	• Changed default permissions from 0755 to 0644 for data files
 	• Maintained 0755 for executable scripts only
 	• Improved database directory security (0700)
 
 == HTML5 & WEB MODERNIZATION ==
 
-9.	CONVERTED: All templates to modern HTML5
+10.	CONVERTED: All templates to modern HTML5
 	• Updated DOCTYPE from XHTML 1.0 to HTML5
 	• Added proper viewport meta tags for mobile support
 	• Included UTF-8 charset declarations
 
-10.	REBUILT: search_form.html from broken Markdown format
+11.	REBUILT: search_form.html from broken Markdown format
 	• Completely rewrote as proper semantic HTML5
 	• Added responsive grid layout with CSS Grid
 	• Enhanced accessibility with proper labels and ARIA support
 
-11.	MODERNIZED: search_tips.html with responsive design
+12.	MODERNIZED: search_tips.html with responsive design
 	• Updated to modern HTML5 structure
 	• Added mobile-friendly navigation
 	• Enhanced readability with improved typography
 
-12.	UPDATED: search.html results template
+13.	UPDATED: search.html results template
 	• Replaced deprecated HTML attributes with CSS
 	• Improved semantic markup for accessibility
 	• Added mobile-responsive table layouts
 
 == CSS & RESPONSIVE DESIGN ==
 
-13.	COMPLETELY REWROTE: style.css for modern web standards
+14.	COMPLETELY REWROTE: style.css for modern web standards
 	• Implemented mobile-first responsive design
 	• Added CSS Grid and Flexbox layouts
 	• Created consistent design system with CSS custom properties
 
-14.	ADDED: Modern UX features
+15.	ADDED: Modern UX features
 	• Smooth transitions and hover effects
 	• Touch-friendly buttons and form elements
 	• Improved typography with system font stack
 
-15.	IMPLEMENTED: Accessibility improvements
+16.	IMPLEMENTED: Accessibility improvements
 	• Keyboard navigation support with focus indicators
 	• High contrast mode compatibility
 	• Reduced motion support for vestibular disorders
 	• Proper color contrast ratios throughout
 
-16.	ADDED: Dark mode support
+17.	ADDED: Dark mode support
 	• Automatic detection of user preference
 	• Complete dark theme with proper contrast
 	• Maintained brand colors in both themes
 
-17.	ENHANCED: Print styles
+18.	ENHANCED: Print styles
 	• Clean printing layouts for documentation
 	• Removal of interactive elements in print view
 	• Optimized typography for paper output
 
 == CONFIGURATION & SETUP ==
 
-18.	UPDATED: Configuration with security defaults
+19.	UPDATED: Configuration with security defaults
 	• Added strong password requirements with clear warnings
 	• Enhanced security comments throughout
 	• Removed potentially risky file extensions (php2)
 	• Set conservative defaults for production use
 
-19.	IMPROVED: Installation documentation
+20.	IMPROVED: Installation documentation
 	• Complete step-by-step installation guide
 	• Fresh installation and upgrade paths
 	• Comprehensive troubleshooting section
@@ -117,55 +124,62 @@ web standards with critical security fixes and modern Perl compatibility.
 
 == BUG FIXES & SCRIPT REPAIRS ==
 
-20.	FIXED: Undefined variable warnings throughout codebase
+21.	FIXED: Undefined variable warnings throughout codebase
 	• Corrected $logterms variable in indexer scripts
 	• Fixed typos in variable names ($USE_DMB → $USE_DBM)
 	• Added proper variable initialization
 
-21.	FIXED: Mixed file handle styles
+22.	FIXED: Mixed file handle styles
 	• Standardized on three-argument open() syntax
 	• Improved error handling for file operations
 	• Enhanced safety of file I/O operations
 
-22.	CORRECTED: HTML validation errors
+23.	CORRECTED: HTML validation errors
 	• Fixed deprecated attributes in templates
 	• Corrected malformed HTML structures
 	• Ensured proper DOCTYPE declarations
 
-23.	FIXED: Major corruption in ksearch.cgi script
+24.	FIXED: Major corruption in ksearch.cgi script
 	• Repaired duplicate and mangled subroutines (show_matches, translate_characters)
 	• Fixed missing closing braces and syntax errors throughout
 	• Restored proper template results processing functionality
 	• Corrected hash reference syntax in template_results function ($_{$1} → $_->{$1})
 	• Resolved template loop processing that caused empty search results
 
-24.	FIXED: Indexer ignore file functionality
+25.	FIXED: Indexer ignore file functionality
 	• Corrected faulty pattern matching logic in indexer.cgi
 	• Changed from exact match requirement (^$skip$) to substring matching (\Q$skip\E)
 	• Added support for both files and directories in ignore patterns
 	• Made ignore file user-friendly with simple directory names (no regex knowledge required)
 
-25.	FIXED: Template substitution and results display
+26.	FIXED: Template substitution and results display
 	• Corrected template_results function to properly accumulate all results
 	• Fixed individual result processing that caused only bullet points to display
 	• Resolved CGI template variable substitution errors
 	• Restored proper search results formatting with titles, descriptions, and scores
+	
+27.	FIXED: Boolean search functionality and strict refs handling
+	- Corrected 'no strict refs' scoping issues that caused HASH reference errors
+	- Fixed process_terms() subroutine to properly handle +/- search operators  
+	- Repaired process_booleans() function strict refs block scoping
+	- Resolved "Can't use string as HASH ref" errors in boolean searches
+	- Restored full functionality of +required and -excluded search terms
 
 == NEW FEATURES ==
 
-26.	ADDED: "Exact Match" search option
+28.	ADDED: "Exact Match" search option
 	• New user-friendly checkbox for automatic phrase searching
 	• Automatically adds quotes around search terms when selected
 	• Integrated into both search_form.html and results template system
 	• Eliminates need for users to manually type quotes for phrase searches
 
-27.	ENHANCED: Search form usability and design
+29.	ENHANCED: Search form usability and design
 	• Completely rebuilt search_form.html with modern responsive design
 	• Added proper form validation and accessibility features
 	• Improved mobile experience with touch-friendly controls
 	• Created professional styling with CSS Grid layout
 
-28.	IMPROVED: Ignore file configuration system
+30.	IMPROVED: Ignore file configuration system
 	• Added comprehensive usage examples and guidelines in ignore_files.txt
 	• Included forum-specific indexing recommendations and best practices
 	• Made configuration accessible for non-technical users
@@ -173,17 +187,17 @@ web standards with critical security fixes and modern Perl compatibility.
 
 == PERFORMANCE IMPROVEMENTS ==
 
-29.	OPTIMIZED: CSS delivery and rendering
+31.	OPTIMIZED: CSS delivery and rendering
 	• Reduced CSS file size while adding features
 	• Improved specificity and cascade efficiency
 	• Better browser rendering performance
 
-30.	ENHANCED: Form validation
+32.	ENHANCED: Form validation
 	• Client-side validation for better UX
 	• Reduced server round-trips for invalid data
 	• Improved user feedback for form errors
 
-31.	STREAMLINED: Search results processing
+33.	STREAMLINED: Search results processing
 	• Fixed inefficient template_results function that called for each result individually
 	• Improved results array handling and batch processing
 	• Enhanced search performance and reliability
@@ -191,13 +205,13 @@ web standards with critical security fixes and modern Perl compatibility.
 
 == COMPATIBILITY & MIGRATION ==
 
-32.	MAINTAINED: 100% backward compatibility
+34.	MAINTAINED: 100% backward compatibility
 	• All existing search databases continue to work
 	• Configuration file format unchanged (only additions)
 	• Search URLs and functionality preserved
 	• Existing ignore_files.txt patterns still supported
 
-33.	PRESERVED: All original features
+35.	PRESERVED: All original features
 	• Boolean search operators (+required, -excluded)
 	• Phrase searching with quotes (now enhanced with checkbox option)
 	• Wildcard searches with asterisk
@@ -207,18 +221,18 @@ web standards with critical security fixes and modern Perl compatibility.
 
 == DOCUMENTATION UPDATES ==
 
-34.	COMPLETELY REWROTE: README.txt
+36.	COMPLETELY REWROTE: README.txt
 	• Added modern installation instructions
 	• Included security considerations
 	• Provided troubleshooting guidance
 	• Added performance optimization tips
 
-35.	UPDATED: Version information
+37.	UPDATED: Version information
 	• Changed version number to 1.7 across all files
 	• Updated copyright and modernization notes
 	• Added security update acknowledgments
 
-36.	ENHANCED: User guidance and configuration help
+38.	ENHANCED: User guidance and configuration help
 	• Added clear ignore file configuration examples
 	• Included forum indexing best practices
 	• Provided troubleshooting for common issues
@@ -261,6 +275,8 @@ This version has been extensively tested with:
 • Comprehensive security vulnerability scanning
 • Real-world production environments
 • Complex search scenarios and edge cases
+• Boolean search operators with various term combinations
+• Security input validation with malicious script attempts
 
 == KNOWN COMPATIBILITY NOTES ==
 

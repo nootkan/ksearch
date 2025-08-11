@@ -234,6 +234,8 @@ sub start_search {
 		$subsearch = 1;
 	} else { # search current query
 		$query_terms = $query->param($FORM_INPUT_NAME) || '';
+		# Security: Basic input sanitization
+		$query_terms = validate_search_input($query_terms);
 		return returnresults() unless $query_terms;  # Return if no query
 		
   		$query_terms =~ s/(&nbsp;)|(&#160;)/ /gs;     		# remove spaces
@@ -357,10 +359,8 @@ sub process_terms {	# get terms and phrases and start search routine
 			}
 		}
 		if ($term ne '+' && $term =~ s/^\+//) {
-			{
-				no strict 'refs';
-				@$term = ();
-			}
+			no strict 'refs';
+			@$term = ();
 			push @plusf, $term;
 			push @checked_terms, $cp_c;
 			$query_terms_copy .= ($cp_c =~ / / ? "+\"$cp_c\" " : "+$cp_c ");
@@ -369,10 +369,8 @@ sub process_terms {	# get terms and phrases and start search routine
 			$query_terms_copy .= ($term =~ / / ? "-\"$term\" " : "-$term ");
 		} else {
 			if ($add_plus) {
-				{
-					no strict 'refs';
-					@$term = ();
-				}
+				no strict 'refs';
+				@$term = ();
 				push @plusf, $term;
 				push @checked_terms, $cp_c;
 				$query_terms_copy .= ($cp_c =~ / / ? "+\"$cp_c\" " : "+$cp_c ");
@@ -720,45 +718,40 @@ sub search_contents {
 sub process_booleans {
 	my $noplus;
 	foreach my $term (@plusf) { # first check if matches exist for each + term
-		{
-			no strict 'refs';
-			if (!%$term) {
-				$noplus = 1;
-				my $term_cp = $term;
-				if ($term_cp =~ m/^&lt;([0-9]+)&gt;/ && $term_cp !~ /^&lt;[0-9]+&gt;$/) {
-					if ($1 >= 2 && $1 <= 10000 && $USER_WEIGHTS) {
-						$term_cp =~ s/^&lt;([0-9]+)&gt;//;      # remove user defined weights
-					} elsif ($term_cp =~ / / && $USER_WEIGHTS) {
-						$term_cp =~ s/^&lt;[0-9]+&gt;//;	# remove user defined weights
-					}
+		no strict 'refs';
+		if (!%$term) {
+			$noplus = 1;
+			my $term_cp = $term;
+			if ($term_cp =~ m/^&lt;([0-9]+)&gt;/ && $term_cp !~ /^&lt;[0-9]+&gt;$/) {
+				if ($1 >= 2 && $1 <= 10000 && $USER_WEIGHTS) {
+					$term_cp =~ s/^&lt;([0-9]+)&gt;//;      # remove user defined weights
+				} elsif ($term_cp =~ / / && $USER_WEIGHTS) {
+					$term_cp =~ s/^&lt;[0-9]+&gt;//;	# remove user defined weights
 				}
-				# if there no files with +boolean term
-				if ($term_cp =~ / /) {	# if it is a phrase
-					push @none, '"'.$term_cp.'"';
-				} else {		# if it is a term
-					push @none, $term_cp;
-				}
+			}
+			# if there no files with +boolean term
+			if ($term_cp =~ / /) {	# if it is a phrase
+				push @none, '"'.$term_cp.'"';
+			} else {		# if it is a term
+				push @none, $term_cp;
 			}
 		}
 	}
 	if (!$noplus) {	# if all + terms have matches find intersection
+		no strict 'refs';
 		my ($i, $si ) = ( 0, scalar keys %{ $plusf[0] });
 		my ($j, $sj );
 		for ( $j= 1; $j < @plusf; $j++ ) { # find smallest hash first
-			no strict 'refs';
 			$sj = scalar keys %{ $plusf[ $j ] };
 			( $i, $si ) = ( $j, $sj ) if $sj < $si;
 		}
 		my ( $hashvalue, %intersection );
 		NEXTHASH: # Check each hash against remaining ones
-		{
-			no strict 'refs';
-			foreach $hashvalue ( keys %{ splice @plusf, $i, 1 } ) {
-				foreach ( @plusf ) {
-					next NEXTHASH unless exists $_{ $hashvalue };
-				}
-				$intersection{ $hashvalue } = undef;
+		foreach $hashvalue ( keys %{ splice @plusf, $i, 1 } ) {
+			foreach ( @plusf ) {
+				next NEXTHASH unless exists $_{ $hashvalue };
 			}
+			$intersection{ $hashvalue } = undef;
 		}
 		@final_files = ( keys %intersection );
 	}
@@ -1160,7 +1153,7 @@ sub returnresults {	# creates HTML page from template file
                                         description => $desc,
                 };
 	}
-	template_results(\@results_array) if @results_array;
+	template_results(\@results_array);
 	my $lastpage = ceil($results, $RESULTS_PER_PAGE);
 	$lastpage ||= 1;
 	if ($currentpage == 1) {
@@ -1334,6 +1327,16 @@ sub template_results {
    $html =~ m/<!--\s*loop:\s*results\s*-->(.*)<!--\s*end:\s*results\s*-->/s;
    my $loop = $1;
    
+   # If no results, remove the entire results loop section and add message
+   if (!@{$results_values}) {
+       my $no_results_msg = '<div style="text-align: center; padding: 40px 20px;">
+           <p style="margin: 10px 0; font-size: 16px;"><strong>No documents found matching your search criteria.</strong></p>
+           <p style="margin: 10px 0; color: #666;">Try using different keywords or check your spelling.</p>
+       </div>';
+       $html =~ s/<!--\s*loop:\s*results\s*-->.*?<!--\s*end:\s*results\s*-->/$no_results_msg/s;
+       return;
+   }
+   
    my $loop_copy = $loop;
    my $out;
    foreach (@{$results_values}) {
@@ -1444,4 +1447,30 @@ sub translate_characters {
 	$translated_term =~ s/(<|&#60;)/&lt;/og;
 	$translated_term =~ s/(>|&#62;)/&gt;/og;
 	return $translated_term;
+}
+sub validate_search_input {
+	my ($input) = @_;
+	
+	# Return empty string if input is undefined
+	return '' unless defined $input;
+	
+	# Maximum query length - much more generous
+	my $max_length = 1000;
+	
+	# Truncate if too long
+	if (length($input) > $max_length) {
+		$input = substr($input, 0, $max_length);
+	}
+	
+	# Only remove the most dangerous patterns, preserve search functionality
+	# Remove script tags and javascript/vbscript attempts
+	$input =~ s/<script[^>]*>.*?<\/script>//gsi;
+	$input =~ s/javascript\s*:/javascript_/gi;
+	$input =~ s/vbscript\s*:/vbscript_/gi;
+	$input =~ s/on\w+\s*=/on_event_/gi;
+	
+	# Remove null bytes and other control characters that could cause issues
+	$input =~ s/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]//g;
+	
+	return $input;
 }
