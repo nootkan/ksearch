@@ -1,0 +1,22 @@
+# Ignore generated database files and logs
+database/*
+!database/.gitkeep
+
+# Ignore backup and temporary files
+*.bak
+*.tmp
+*.swp
+
+# Ignore OS-generated files
+Thumbs.db
+.DS_Store
+ehthumbs.db
+
+# Ignore editor/IDE project files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Ignore Perl local libs (if ever used)
+local/
