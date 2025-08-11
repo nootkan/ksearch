@@ -63,6 +63,8 @@ You will need a text editor, FTP/SSH access to your server, and basic command li
 
 == INSTALLATION STEPS: ==
 
+Download and unzip the zip file via sftp or your preferred software.  Ensure you choose a different folder when unzipping if you don't want duplicate folder names ie: ksearch-main/ksearch-main/
+
 1.	VERIFY PERL AND CGI MODULE:
 		Test if CGI.pm is available:
 		perl -MCGI -e "print 'CGI.pm version: ', \$CGI::VERSION, \"\n\""
