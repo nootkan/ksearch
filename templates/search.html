@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>kSearch <!--cgi: version--> Results</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="robots" content="noindex, nofollow">
+	<link rel="stylesheet" href="ks_images/style.css" type="text/css">
+</head>
+<body>
+<a id="top"></a>
+	<table border="0" cellpadding="5" cellspacing="2" style="background-color: #00B852; width: 80%; margin: 0 auto;">
+		<tr><td> <!--cgi: header--> <!--cgi: subheader--> <!--cgi: searchtime--> </td></tr>
+	</table>
+		<div class="content">
+			<p><a href="/"><strong>&larr;&larr;&larr; Return to Home Page</strong></a></p>
+		</div>
+	<h2>Your Search Results</h2>
+	<table cellpadding="5" cellspacing="2" border="0" style="margin: 0 auto;">
+		<tr><td> <!--cgi: previous--> <!--cgi: navbar--> <!--cgi: next--> </td></tr>
+	</table>
+<div class="results_table">
+	<div class="results_loop">
+		<table style="width: 80%; border: 0;">
+			<tr><td>
+				<!--loop: results-->
+					<strong><!--item: rank-->. &nbsp; <a href="<!--item: url-->"><!--item: title--> </a></strong>
+					<ul><li><!--item: description--></li>
+						<li><span style="font-size: small; color: #898989;"> <!--item: scoreA--> &nbsp; <!--item: scoreB--> &nbsp; <!--item: scoreC--> &nbsp; <!--item: scoreD--> </span></li>
+					</ul>
+				<!--end: results-->
+			</td></tr>
+		</table>  
+	</div>    
+	<table style="width: 80%; margin: 0 auto;" cellpadding="5" cellspacing="2" border="0">
+		<tr><td> <!--cgi: previous--> <!--cgi: navbar--> <!--cgi: next--> </td></tr>
+	</table>
+	<a id="form"></a>
+	<h2>Search again ..</h2>
+	<div class="search_again">
+		<table cellpadding="10" cellspacing="0" border="0" style="margin: 0 auto;">
+			<tr><td>
+				<form name="search" method="get" action="<!--cgi: search_url-->">
+					<input type="text" size="35" name="<!--cgi: input_name-->" value="<!--cgi: query_str-->" onfocus="this.select();">
+					&nbsp; <input type="submit" value="Search">
+					<br>
+					<table border="0" cellpadding="5" cellspacing="0">
+						<tr><td style="text-align: left;">
+								<!--cgi: subsearch--><br>
+								<!--cgi: c--><br>
+								<!--cgi: w--><br>
+								<!--cgi: exact--><br>
+								<!--cgi: st-->
+							</td>
+							<td style="vertical-align: top;">
+								Sort by <select name="sort"> <!--cgi: sort--> </select><br><br>
+								Display <select name="display"> <!--cgi: display--> </select>
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align: left;" colspan="2"><br><strong>Content Search Options</strong></td>
+						</tr>
+						<tr>
+							<td style="text-align: left;" colspan="2">
+								<!--cgi: b--> <!--cgi: t--> <!--cgi: u--> <!--cgi: alt--> <!--cgi: l-->
+								<br>
+								<!--cgi: d--> <!--cgi: k-->  <!--cgi: default-->
+								<br>
+								 <!--cgi: au--> <!--cgi: show_matches-->
+							</td>
+						</tr>
+					</table>
+				</form>
+			</td></tr>
+		</table>
+		<br>
+		<table border="0" cellpadding="2" cellspacing="0" style="background-color: #00B852; width: 100%;">
+			<tr>
+				<td style="text-align: center;">
+					<!--cgi: results--> | &nbsp; Page <strong><!--cgi: current_page--></strong> of <strong><!--cgi: total_pages--></strong> | 
+					&nbsp; <small>Powered by <a href="https://web.archive.org/web/20130805115023/http://www.ksearch.info/">kSearch <!--cgi: version--></a></small>
+				</td>
+				<td style="text-align: right;"><a href="#top"><strong>Back to top &nbsp; </strong></a></td>
+			</tr>
+		</table>
+</div>
+</div>
+</body>
+</html>

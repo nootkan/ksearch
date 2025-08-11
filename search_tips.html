@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>KSearch 1.7 Search Tips</title>
+	<meta name="description" content="kSearch Search Tips and Help">
+	<meta name="keywords" content="ksearch, advanced, search tips">
+	<meta name="robots" content="noindex, nofollow">
+	<link rel="stylesheet" href="ks_images/style.css" type="text/css">
+	<style>
+		.container {
+			max-width: 1000px;
+			margin: 0 auto;
+			padding: 20px;
+			line-height: 1.6;
+		}
+		
+		.header-section {
+			text-align: center;
+			background: linear-gradient(135deg, #00B852, #9DF406);
+			color: white;
+			padding: 30px;
+			border-radius: 8px;
+			margin-bottom: 30px;
+		}
+		
+		.header-section h1 {
+			margin: 0;
+			font-size: 2.5em;
+		}
+		
+		.header-section img {
+			margin: 20px 0;
+		}
+		
+		.nav-links {
+			background-color: #f8f9fa;
+			padding: 15px;
+			border-radius: 5px;
+			margin-bottom: 20px;
+			text-align: center;
+		}
+		
+		.nav-links a {
+			margin: 0 15px;
+			color: #00B852;
+			text-decoration: none;
+			font-weight: bold;
+		}
+		
+		.nav-links a:hover {
+			text-decoration: underline;
+		}
+		
+		.alert-box {
+			background-color: #fff3cd;
+			border: 1px solid #ffeaa7;
+			color: #856404;
+			padding: 15px;
+			border-radius: 5px;
+			margin: 20px 0;
+		}
+		
+		.tips-section {
+			background-color: white;
+			padding: 25px;
+			margin: 20px 0;
+			border-radius: 8px;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		}
+		
+		.tips-section h3 {
+			color: #00B852;
+			border-bottom: 2px solid #00B852;
+			padding-bottom: 10px;
+			margin-top: 0;
+		}
+		
+		.tips-section ul {
+			padding-left: 20px;
+		}
+		
+		.tips-section li {
+			margin: 10px 0;
+		}
+		
+		.example-box {
+			background-color: #f8f9fa;
+			border-left: 4px solid #00B852;
+			padding: 15px;
+			margin: 15px 0;
+			font-family: monospace;
+			border-radius: 0 4px 4px 0;
+		}
+		
+		.example-input {
+			background-color: white;
+			border: 2px solid #ddd;
+			padding: 8px 12px;
+			border-radius: 4px;
+			font-family: monospace;
+			display: inline-block;
+			margin: 5px 0;
+			min-width: 300px;
+		}
+		
+		.highlight {
+			background-color: #fff3cd;
+			padding: 2px 4px;
+			border-radius: 3px;
+		}
+		
+		.footer-section {
+			text-align: center;
+			background-color: #f8f9fa;
+			padding: 20px;
+			border-radius: 5px;
+			margin-top: 30px;
+			font-size: 14px;
+			color: #666;
+		}
+		
+		@media (max-width: 768px) {
+			.container {
+				padding: 10px;
+			}
+			
+			.header-section h1 {
+				font-size: 2em;
+			}
+			
+			.example-input {
+				min-width: 250px;
+				width: 100%;
+				box-sizing: border-box;
+			}
+			
+			.nav-links a {
+				display: block;
+				margin: 5px 0;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="topbar"></div>
+
+	<div class="container">
+		<div class="header-section">
+			<h1>kSearch v1.6</h1>
+			<h2>Search Tips <a href="https://web.archive.org/web/20130806163743/http://www.ksearch.info/search_tips.html"><img src="ks_images/KSlogo.gif" alt="KScripts - KSearch" style="vertical-align: middle;"></a></h2>
+		</div>
+
+		<div class="nav-links">
+			<a href="../index.html">&larr;&larr;&larr; Return to Home</a>
+			<a href="search_form.html">Search Form</a>
+			<a href="ksearch.cgi">Quick Search</a>
+		</div>
+
+		<div class="alert-box">
+			<strong>Need more help?</strong> <a href="https://web.archive.org/web/20130806170710/http://support.ksearch.info/">Discuss it in our Forum</a>
+		</div>
+
+		<div class="tips-section">
+			<h3>General Search Tips</h3>
+			<ul>
+				<li>Use double quotes around phrases to search.</li>
+				<li>Add <span class="highlight">+</span> in front of terms/phrases that must appear in results.</li>
+				<li>Add <span class="highlight">-</span> in front of terms/phrases that must not appear in results.</li>
+				<li>The + checkbox adds a plus in front of all terms/phrases for convenience.</li>
+				<li>The default search content is the body, title, and meta-description.</li>
+				<li>The score is the percentage of matching characters in a document.</li>
+				<li>ISO Latin-1 characters like äßçéñ..etc. are treated as english equivalents.</li>
+				<li>Special characters like #!$%|&amp;..etc. are allowed.</li>
+				<li>Stop-terms are common terms like "it and the that...".</li>
+			</ul>
+		</div>
+
+		<div class="tips-section">
+			<h3>Advanced Search Tips</h3>
+			
+			<h4>Wildcards</h4>
+			<p>Searching can be expanded with a wildcard (*).</p>
+			<div class="example-box">
+				<p>Adding a * to the end of a term will match all endings. For example: 'test*' will match 'tests' 'tested' 'testing' etc.</p>
+				<p>Stop-terms are included in wildcard searches.</p>
+			</div>
+
+			<h4>Weights</h4>
+			<p>Weights can be applied by adding &lt;2-10000&gt; in front of terms or phrases.</p>
+			<div class="example-box">
+				<p><strong>For example:</strong></p>
+				<div class="example-input">&lt;100&gt;term none &lt;500&gt;"a phrase"</div>
+				<p>The query above will weight scores 100 and 500 times greater for documents containing 'term' and 'a phrase', respectively.<br>
+				The scores for documents containing only 'none' will remain unchanged. The weight must be in the range of 2-10000.<br>
+				Add + (inclusion) in front of weights. The results will be sorted by weighted scores.</p>
+			</div>
+
+			<h4>Query Options</h4>
+			<p>The following options can be placed in any order in front of the query:</p>
+			<div class="example-box">
+				<table style="width: 100%; border-collapse: collapse;">
+					<tr>
+						<td style="padding: 5px; font-weight: bold; width: 80px;">c:</td>
+						<td style="padding: 5px;">for a case sensitive search.</td>
+					</tr>
+					<tr>
+						<td style="padding: 5px; font-weight: bold;">w:</td>
+						<td style="padding: 5px;">to match whole words only.</td>
+					</tr>
+					<tr>
+						<td style="padding: 5px; font-weight: bold;">st:</td>
+						<td style="padding: 5px;">to include stop-terms.</td>
+					</tr>
+					<tr>
+						<td style="padding: 5px; font-weight: bold;">all:</td>
+						<td style="padding: 5px;">to add + in front of all terms/phrases.</td>
+					</tr>
+					<tr>
+						<td style="padding: 5px; font-weight: bold;">match:</td>
+						<td style="padding: 5px;">score: date: size: title: or name: for the sorting choice.</td>
+					</tr>
+					<tr>
+						<td style="padding: 5px; font-weight: bold;">5-100:</td>
+						<td style="padding: 5px;">for the number of results to display per page.</td>
+					</tr>
+					<tr>
+						<td style="padding: 5px; font-weight: bold;">b:</td>
+						<td style="padding: 5px;">to search the body (full text) of documents.</td>
+					</tr>
+					<tr>
+						<td style="padding: 5px; font-weight: bold;">t:</td>
+						<td style="padding: 5px;">to search the title of documents.</td>
+					</tr>
+					<tr>
+						<td style="padding: 5px; font-weight: bold;">u:</td>
+						<td style="padding: 5px;">to search the url of documents.</td>
+					</tr>
+					<tr>
+						<td style="padding: 5px; font-weight: bold;">alt:</td>
+						<td style="padding: 5px;">to search the alternate text in documents.</td>
+					</tr>
+					<tr>
+						<td style="padding: 5px; font-weight: bold;">l:</td>
+						<td style="padding: 5px;">to search the links in documents.</td>
+					</tr>
+					<tr>
+						<td style="padding: 5px; font-weight: bold;">d:</td>
+						<td style="padding: 5px;">to search the meta-description in documents.</td>
+					</tr>
+					<tr>
+						<td style="padding: 5px; font-weight: bold;">k:</td>
+						<td style="padding: 5px;">to search the meta-keywords in documents.</td>
+					</tr>
+					<tr>
+						<td style="padding: 5px; font-weight: bold;">au:</td>
+						<td style="padding: 5px;">to search the meta-author in documents.</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="example-box">
+				<p><strong>For example:</strong></p>
+				<div class="example-input">c:b:t:d:15:size:term "a phrase"</div>
+				<p>The query above will perform a case sensitive search for 'term' and 'a phrase' in the body, title, and meta-description of documents. 15 results will be displayed per page and the results will be sorted by file size.</p>
+			</div>
+		</div>
+
+		<div class="tips-section">
+			<h3>Security and Privacy</h3>
+			<ul>
+				<li>Search queries are logged for system administration purposes.</li>
+				<li>No personal information is stored beyond IP addresses in logs.</li>
+				<li>Search results are limited to indexed content on this website only.</li>
+				<li>Special characters and search terms are validated for security.</li>
+			</ul>
+		</div>
+
+		<div class="footer-section">
+			<p><a href="https://web.archive.org/web/20130805115023/http://www.ksearch.info/" target="_blank" rel="noopener">kSearch v1.7</a> &copy; Copyright 2012, All rights reserved.</p>
+			<p>Modernized and secured for modern web standards.</p>
+		</div>
+	</div>
+
+	<div class="bottombar"></div>
+</body>
+</html>

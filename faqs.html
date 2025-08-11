@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>FAQs - KSearch v1.7 Modernized & Secured</title>
+	<link rel="stylesheet" href="search/ks_images/style.css" type="text/css">
+	<meta name="description" content="FAQs - KSearch v1.7 Modernized - Installation, Security, and Usage Guide">
+	<meta name="keywords" content="ksearch, search engine, installation, troubleshooting, security, modern perl">
+	<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+	<div class="topbar"><a id="top"></a></div>
+
+<!-- Start Main Content -->
+<div class="container">
+	<h1>KSearch v1.7 - <a href="https://github.com/ksearch">Modernized & Secured!</a></h1>
+	<h2>Admin FAQs <a href="https://web.archive.org/web/20130805115023/http://www.ksearch.info/"><img src="search/ks_images/KSlogo.gif" alt="KScripts - KSearch"></a></h2>
+	
+	<div class="alert-box">
+		<p><strong>Need more help?</strong> <a href="https://web.archive.org/web/20130806170710/http://support.ksearch.info/">Discuss it in our Forum</a></p>
+	</div>
+
+	<nav class="nav-links">
+		<a href="#general">General</a>
+		<a href="#install">Installation</a>
+		<a href="#security">Security</a>
+		<a href="#modernization">v1.7 Updates</a>
+		<a href="#common_problems">Troubleshooting</a>
+	</nav>
+
+	<div class="tips-section">
+		<h3><a href="#general">General</a></h3>
+		<ul>
+			<li><a href="#whatisksearch">What is KSearch v1.7?</a></li>
+			<li><a href="#whatsnewin17">What's new in version 1.7?</a></li>
+			<li><a href="#requirements">What do I need to use KSearch v1.7?</a></li>
+			<li><a href="#howdoesitwork">How does KSearch work?</a></li>
+		</ul>
+
+		<h3><a href="#install">Installation and Setup</a></h3>
+		<ul>
+			<li><a href="#installation">How do I install KSearch v1.7?</a></li>
+			<li><a href="#cgipmneed">Do I need to install CGI.pm?</a></li>
+			<li><a href="#upgrade">How do I upgrade from v1.6 to v1.7?</a></li>
+			<li><a href="#perlpath">How do I set the Perl path?</a></li>
+			<li><a href="#filepermissions">How do I set file permissions?</a></li>
+			<li><a href="#configuration">How do I configure KSearch?</a></li>
+		</ul>
+
+		<h3><a href="#security">Security Features</a></h3>
+		<ul>
+			<li><a href="#security_improvements">What security improvements are in v1.7?</a></li>
+			<li><a href="#password_requirements">What are the password requirements?</a></li>
+			<li><a href="#pdf_security">Is PDF indexing secure?</a></li>
+			<li><a href="#input_validation">How does input validation work?</a></li>
+		</ul>
+
+		<h3><a href="#modernization">Modern Features</a></h3>
+		<ul>
+			<li><a href="#responsive_design">Is KSearch mobile-friendly?</a></li>
+			<li><a href="#modern_browsers">What browsers are supported?</a></li>
+			<li><a href="#accessibility">What accessibility features are included?</a></li>
+			<li><a href="#performance">How has performance improved?</a></li>
+		</ul>
+
+		<h3><a href="#common_problems">Troubleshooting</a></h3>
+		<ul>
+			<li><a href="#cgi_module_error">CGI module not found error</a></li>
+			<li><a href="#authentication_error">Authentication error on indexer</a></li>
+			<li><a href="#permission_denied">Permission denied errors</a></li>
+			<li><a href="#no_results">Search returns no results</a></li>
+			<li><a href="#mobile_display">Mobile display issues</a></li>
+		</ul>
+	</div>
+
+	<hr>
+
+	<section id="general" class="tips-section">
+		<h3>General</h3>
+		
+		<div id="whatisksearch">
+			<h4>What is KSearch v1.7?</h4>
+			<p>KSearch v1.7 is a completely modernized and secured version of the classic KSearch website search engine. It maintains all the powerful features of the original while adding:</p>
+			<ul>
+				<li><strong>Critical security fixes</strong> - Protection against XSS, command injection, and path traversal attacks</li>
+				<li><strong>Modern Perl compatibility</strong> - Works with current Perl versions (5.20+)</li>
+				<li><strong>Responsive design</strong> - Mobile-friendly interface that works on all devices</li>
+				<li><strong>Enhanced accessibility</strong> - Better support for screen readers and keyboard navigation</li>
+				<li><strong>Improved performance</strong> - Optimized code and modern web standards</li>
+			</ul>
+		</div>
+
+		<div id="whatsnewin17">
+			<h4>What's new in version 1.7?</h4>
+			<p>Version 1.7 represents a major modernization from the 2011 v1.6 release:</p>
+			<ul>
+				<li><strong>Security:</strong> Fixed all known vulnerabilities with comprehensive input validation</li>
+				<li><strong>Compatibility:</strong> Updated for modern Perl versions and web standards</li>
+				<li><strong>Design:</strong> Complete responsive redesign with HTML5 and modern CSS</li>
+				<li><strong>Accessibility:</strong> WCAG compliance with keyboard navigation and screen reader support</li>
+				<li><strong>Documentation:</strong> Comprehensive installation and troubleshooting guides</li>
+			</ul>
+			<p>See the <a href="v1.7_Changelog.txt">complete changelog</a> for detailed information.</p>
+		</div>
+
+		<div id="requirements">
+			<h4>What do I need to use KSearch v1.7?</h4>
+			<ul>
+				<li><strong>Web Server:</strong> Any server supporting Perl CGI (Apache, Nginx, IIS)</li>
+				<li><strong>Perl:</strong> Version 5.20 or higher (5.38+ recommended)</li>
+				<li><strong>CGI Module:</strong> CGI.pm (may need separate installation on newer systems)</li>
+				<li><strong>Permissions:</strong> Write access for database directory</li>
+				<li><strong>Optional:</strong> pdftotext (Xpdf) for PDF file indexing</li>
+			</ul>
+			<p>Most modern hosting providers support these requirements.</p>
+		</div>
+
+		<div id="howdoesitwork">
+			<h4>How does KSearch work?</h4>
+			<p>KSearch operates in two phases:</p>
+			<ol>
+				<li><strong>Indexing:</strong> The indexer crawls your website, extracts text content from HTML files, and builds a searchable database</li>
+				<li><strong>Searching:</strong> The search engine queries the database and returns ranked results based on relevance scores</li>
+			</ol>
+			<p>v1.7 maintains this efficient architecture while adding modern security and performance enhancements.</p>
+		</div>
+	</section>
+
+	<section id="install" class="tips-section">
+		<h3>Installation and Setup</h3>
+
+		<div id="installation">
+			<h4>How do I install KSearch v1.7?</h4>
+			<p>Follow these steps for a fresh installation:</p>
+			<ol>
+				<li><strong>Check Requirements:</strong> Verify Perl and CGI.pm are available</li>
+				<li><strong>Upload Files:</strong> Extract and upload all KSearch files to your server</li>
+				<li><strong>Set Permissions:</strong> Configure file permissions (755 for scripts, 644 for configs)</li>
+				<li><strong>Edit Configuration:</strong> Update paths and settings in configuration.pl</li>
+				<li><strong>Run Indexer:</strong> Index your website content</li>
+				<li><strong>Test Search:</strong> Verify search functionality works</li>
+			</ol>
+			<p>See the <a href="README.txt">complete README</a> for detailed instructions.</p>
+		</div>
+
+		<div id="cgipmneed">
+			<h4>Do I need to install CGI.pm?</h4>
+			<p>CGI.pm was removed from Perl core in version 5.22 (2015), so you may need to install it separately:</p>
+			<div class="example-box">
+				<p><strong>Check if you have it:</strong></p>
+				<code>perl -MCGI -e "print 'CGI.pm available'"</code>
+				<p><strong>Install if needed:</strong></p>
+				<code>cpan CGI</code><br>
+				<code>apt-get install libcgi-pm-perl</code> (Ubuntu/Debian)<br>
+				<code>yum install perl-CGI</code> (CentOS/RHEL)
+			</div>
+		</div>
+
+		<div id="upgrade">
+			<h4>How do I upgrade from v1.6 to v1.7?</h4>
+			<ol>
+				<li><strong>Backup:</strong> Create a complete backup of your current installation</li>
+				<li><strong>Replace Files:</strong> Update all Perl scripts and HTML templates</li>
+				<li><strong>Update Config:</strong> Add new security settings to configuration.pl</li>
+				<li><strong>Check CGI.pm:</strong> Ensure CGI module is available</li>
+				<li><strong>Test:</strong> Verify search functionality before going live</li>
+			</ol>
+			<p>Your existing search database is fully compatible - no re-indexing required.</p>
+		</div>
+
+		<div id="configuration">
+			<h4>How do I configure KSearch?</h4>
+			<p>Edit <code>configuration/configuration.pl</code> with these critical settings:</p>
+			<div class="example-box">
+				<code>$INDEXER_START = '/full/path/to/your/website/';</code><br>
+				<code>$BASE_URL = 'https://www.yourdomain.com/';</code><br>
+				<code>$SEARCH_URL = "https://www.yourdomain.com/search/ksearch.cgi";</code><br>
+				<code>$PASSWORD = "Your-Strong-Password-Here-123!";</code>
+			</div>
+		</div>
+	</section>
+
+	<section id="security" class="tips-section">
+		<h3>Security Features</h3>
+
+		<div id="security_improvements">
+			<h4>What security improvements are in v1.7?</h4>
+			<ul>
+				<li><strong>Input Validation:</strong> All user inputs are validated and sanitized</li>
+				<li><strong>XSS Prevention:</strong> HTML output is properly encoded</li>
+				<li><strong>Path Protection:</strong> Directory traversal attacks prevented</li>
+				<li><strong>Command Injection:</strong> Safe execution of external commands</li>
+				<li><strong>Authentication:</strong> Enhanced password requirements and validation</li>
+			</ul>
+		</div>
+
+		<div id="password_requirements">
+			<h4>What are the password requirements?</h4>
+			<p>For indexer access, use a strong password that:</p>
+			<ul>
+				<li>Is at least 12 characters long</li>
+				<li>Contains mixed case letters, numbers, and symbols</li>
+				<li>Doesn't contain easily guessed words</li>
+				<li>Is unique to your KSearch installation</li>
+			</ul>
+			<p><strong>Never use the default placeholder password!</strong></p>
+		</div>
+
+		<div id="pdf_security">
+			<h4>Is PDF indexing secure?</h4>
+			<p>v1.7 includes enhanced PDF processing security:</p>
+			<ul>
+				<li>Strict filename validation prevents injection attacks</li>
+				<li>Controlled execution environment with restricted PATH</li>
+				<li>Input sanitization for all PDF-related operations</li>
+			</ul>
+			<p>However, for maximum security, only enable PDF indexing if you trust all PDF content.</p>
+		</div>
+	</section>
+
+	<section id="modernization" class="tips-section">
+		<h3>Modern Features</h3>
+
+		<div id="responsive_design">
+			<h4>Is KSearch mobile-friendly?</h4>
+			<p>Yes! v1.7 includes comprehensive mobile support:</p>
+			<ul>
+				<li><strong>Responsive design</strong> that adapts to all screen sizes</li>
+				<li><strong>Touch-friendly</strong> buttons and form elements</li>
+				<li><strong>Optimized typography</strong> for mobile reading</li>
+				<li><strong>Fast loading</strong> on mobile networks</li>
+			</ul>
+		</div>
+
+		<div id="modern_browsers">
+			<h4>What browsers are supported?</h4>
+			<p>KSearch v1.7 supports all modern browsers:</p>
+			<ul>
+				<li>Chrome, Firefox, Safari, Edge (current versions)</li>
+				<li>Mobile browsers on iOS and Android</li>
+				<li>Accessibility tools and screen readers</li>
+			</ul>
+		</div>
+
+		<div id="accessibility">
+			<h4>What accessibility features are included?</h4>
+			<ul>
+				<li><strong>Keyboard navigation</strong> for all interactive elements</li>
+				<li><strong>Screen reader</strong> compatibility with proper ARIA labels</li>
+				<li><strong>High contrast</strong> mode support</li>
+				<li><strong>Reduced motion</strong> options for users with vestibular disorders</li>
+			</ul>
+		</div>
+	</section>
+
+	<section id="common_problems" class="tips-section">
+		<h3>Troubleshooting</h3>
+
+		<div id="cgi_module_error">
+			<h4>CGI module not found error</h4>
+			<p><strong>Problem:</strong> "CGI module not found. Please install with: cpan CGI"</p>
+			<p><strong>Solution:</strong> Install the CGI module using your system's package manager or CPAN:</p>
+			<div class="example-box">
+				<code>cpan CGI</code><br>
+				<code>apt-get install libcgi-pm-perl</code><br>
+				<code>yum install perl-CGI</code>
+			</div>
+		</div>
+
+		<div id="authentication_error">
+			<h4>Authentication error on indexer</h4>
+			<p><strong>Problem:</strong> "Authentication error" when accessing indexer.cgi</p>
+			<p><strong>Solutions:</strong></p>
+			<ul>
+				<li>Verify password in configuration.pl matches what you're entering</li>
+				<li>Check that @VALID_REFERERS includes your domain</li>
+				<li>Ensure you're accessing the correct URL</li>
+			</ul>
+		</div>
+
+		<div id="permission_denied">
+			<h4>Permission denied errors</h4>
+			<p><strong>Problem:</strong> Various permission-related errors</p>
+			<p><strong>Solutions:</strong></p>
+			<ul>
+				<li>Set script files to 755: <code>chmod 755 ksearch.cgi indexer.cgi indexer.pl</code></li>
+				<li>Set config files to 644: <code>chmod 644 configuration/configuration.pl</code></li>
+				<li>Set database directory to 700: <code>chmod 700 database/</code></li>
+			</ul>
+		</div>
+
+		<div id="no_results">
+			<h4>Search returns no results</h4>
+			<p><strong>Problem:</strong> Search completes but shows no results for known content</p>
+			<p><strong>Solutions:</strong></p>
+			<ul>
+				<li>Verify indexing completed successfully</li>
+				<li>Check file extensions in @FILE_EXTENSIONS array</li>
+				<li>Ensure database files were created in database/ directory</li>
+				<li>Try re-running the indexer</li>
+			</ul>
+		</div>
+
+		<div id="mobile_display">
+			<h4>Mobile display issues</h4>
+			<p><strong>Problem:</strong> Layout appears broken on mobile devices</p>
+			<p><strong>Solutions:</strong></p>
+			<ul>
+				<li>Ensure you're using the modernized style.css</li>
+				<li>Clear browser cache and reload page</li>
+				<li>Verify viewport meta tag is present in HTML templates</li>
+			</ul>
+		</div>
+	</section>
+
+	<hr>
+
+	<footer class="footer">
+		<p><a href="https://web.archive.org/web/20130805115023/http://www.ksearch.info/">kSearch v1.7</a> © Copyright 2012-2025, All rights reserved.</p>
+		<p>Modernized and secured for current web standards.</p>
+	</footer>
+</div>
+
+<div class="bottombar"></div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+# Ignore Files Configuration
+# USAGE:
+# - Add directory names ending with / to ignore entire directories
+# - Add specific filenames (with extensions) to ignore individual files
+# - Use relative paths from your website root
+# - One pattern per line, COMMENTS start with #
+#
+# EXAMPLES:
+# admin/              (ignores admin directory and all contents)
+# temp-file.html      (ignores specific file)
+# backups/            (ignores backups directory)
+admin/
+assets/
+backups/
+cgi-bin/
+css/
+js/
+search/

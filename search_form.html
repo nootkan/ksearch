@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSearch - Site Search Engine</title>
+    <meta name="description" content="Search our website using KSearch search engine">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="ks_images/style.css" type="text/css">
+    <style>
+        .search-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        
+        .search-form {
+            background-color: #f8fdf0;
+            border: 1px solid #e3edd2;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .search-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 8px;
+            font-size: 16px;
+            border: 2px solid #00B852;
+            border-radius: 4px;
+        }
+        
+        .search-button {
+            background-color: #00B852;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        
+        .search-button:hover {
+            background-color: #009640;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .option-group {
+            background-color: #ffffff;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .option-group h3 {
+            margin-top: 0;
+            color: #00B852;
+            font-size: 16px;
+        }
+        
+        .checkbox-group {
+            margin: 5px 0;
+        }
+        
+        .tips-section {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+		
+		.pageCenter {
+			text-align: center;
+			font-weight: 700;
+		}
+        
+        .logo-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-input {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            
+            .search-button {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar"></div>
+    
+    <div class="search-container">
+        <div class="logo-container">
+            <h1>Welcome!</h1>
+            <p><a href="../index.html">Return Home</a></p>
+        </div>
+        
+        <div id="form" class="search-form">
+            <form name="search" method="get" action="ksearch.cgi">
+                <fieldset style="border: none; padding: 0;">
+                    <legend style="font-size: 18px; font-weight: bold; color: #00B852;">Search Our Site</legend>
+                    
+                    <div style="text-align: center; margin: 20px 0;">
+                        <input type="text" name="terms" class="search-input" placeholder="Enter your search terms..." maxlength="200" required>
+                        <input type="submit" value="Search" class="search-button">
+                    </div>
+                </fieldset>
+                
+                <div class="options-grid">
+                    <div class="option-group">
+                        <h3>Search Options</h3>
+                        <div class="checkbox-group">
+                            <input type="checkbox" name="c" value="s" id="case-sensitive">
+                            <label for="case-sensitive">Case Sensitive</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" name="w" value="1" id="whole-words">
+                            <label for="whole-words">Whole Words Only</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" name="exact" value="1" id="exact-match">
+                            <label for="exact-match">Exact Match</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" name="st" value="1" id="include-stop">
+                            <label for="include-stop">Include Stop-Terms</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" name="all" value="1" id="add-plus">
+                            <label for="add-plus">Add + to all terms</label>
+                        </div>
+                    </div>
+                    
+                    <div class="option-group">
+                        <h3>Display Options</h3>
+                        <div style="margin: 10px 0;">
+                            <label for="sort-by">Sort by:</label>
+                            <select name="sort" id="sort-by">
+                                <option value="Scores" selected>Scores</option>
+                                <option value="Matches">Matches</option>
+                                <option value="Dates">Dates</option>
+                                <option value="Sizes">Sizes</option>
+                                <option value="Titles">Titles</option>
+                                <option value="File Names">File Names</option>
+                            </select>
+                        </div>
+                        <div style="margin: 10px 0;">
+                            <label for="results-per-page">Results per page:</label>
+                            <select name="display" id="results-per-page">
+                                <option value="5">5</option>
+                                <option value="10" selected>10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="option-group" style="margin-top: 20px;">
+                    <h3>Content Search Options</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+                        <div class="checkbox-group">
+                            <input type="checkbox" name="b" value="1" id="search-body" checked>
+                            <label for="search-body">Body</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" name="t" value="1" id="search-title" checked>
+                            <label for="search-title">Title</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" name="u" value="1" id="search-url">
+                            <label for="search-url">URL</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" name="alt" value="1" id="search-alt">
+                            <label for="search-alt">Alt-Text</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" name="l" value="1" id="search-links">
+                            <label for="search-links">Links</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" name="d" value="1" id="search-meta-desc" checked>
+                            <label for="search-meta-desc">Meta-Description</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" name="k" value="1" id="search-meta-keywords">
+                            <label for="search-meta-keywords">Meta-Keywords</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" name="au" value="1" id="search-meta-author">
+                            <label for="search-meta-author">Meta-Authors</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" name="showm" value="10" id="show-matches">
+                            <label for="show-matches">Show Matches in Descriptions</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" name="default" value="1" id="use-default">
+                            <label for="use-default">Use Default Settings</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="logo-container">
+                    <a href="http://www.ksearch.info" target="_blank" rel="noopener">
+                        <img src="ks_images/KSlogo.gif" alt="Powered by KSearch Engine 1.7" style="border: none;">
+                    </a>
+                </div>
+            </form>
+        </div>
+        
+        <div class="tips-section">
+            <h3>General Search Tips</h3>
+            <ul>
+                <li>Default search content: is the body, title, and meta-description.</li>
+                <li>Stop-terms are common terms like "it and the that...".</li>
+                <li>Special characters like #!$%|&amp;..etc. are allowed.</li>
+                <li>ISO Latin-1 characters like äßçéñ..etc. are treated as english equivalents.</li>
+                <li>Phrases: use double-quotes around search term. ("search")</li>
+                <li>Add + in front of terms/phrases that must appear in results.</li>
+                <li>Add - in front of terms/phrases that must not appear in results.</li>
+                <li>The + checkbox adds a plus in front of all terms/phrases for convenience.</li>
+                <li>The <strong>score</strong> is the percentage of matching characters in a document.</li>
+            </ul>
+            
+            <h3>Advanced Search Tips</h3>
+            <ul>
+                <li><strong>Wildcards:</strong> Searching can be expanded with a wildcard (*).
+                    <br>Adding a * to the end of a term will match all endings. For example: 'test*' will match 'tests' 'tested' 'testing' etc.
+                    <br>Stop-terms are included in wildcard searches.</li>
+                
+                <li><strong>Weights:</strong> Weights can be applied by adding &lt;2-10000&gt; in front of terms or phrases.
+                    <br>For example: <code>&lt;100&gt;term none &lt;500&gt;"a phrase"</code>
+                    <br>The query above will weight scores 100 and 500 times greater for documents containing 'term' and 'a phrase', respectively.
+                    <br>The scores for documents containing only 'none' will remain unchanged. The weight must be in the range of 2-10000.
+                    <br>Add + (inclusion) in front of weights. The results will be sorted by weighted scores.</li>
+                
+                <li><strong>Query Options:</strong> The following options can be placed in any order in front of the query:
+                    <br><strong>c:</strong> for a case sensitive search.
+                    <br><strong>w:</strong> to match whole words only.
+                    <br><strong>st:</strong> to include stop-terms.
+                    <br><strong>all:</strong> to add + in front of all terms/phrases.
+                    <br><strong>match: score: date: size: title:</strong> or <strong>name:</strong> for the sorting choice.
+                    <br><strong>5-100:</strong> for the number of results to display per page.
+                    <br><strong>b:</strong> to search the body (full text) of documents.
+                    <br><strong>t:</strong> to search the title of documents.
+                    <br><strong>u:</strong> to search the url of documents.
+                    <br><strong>alt:</strong> to search the alternate text in documents.
+                    <br><strong>l:</strong> to search the links in documents.
+                    <br><strong>d:</strong> to search the meta-description in documents.
+                    <br><strong>k:</strong> to search the meta-keywords in documents.
+                    <br><strong>au:</strong> to search the meta-author in documents.
+                    <br>For example: <code>c:b:t:d:15:size:term "a phrase"</code>
+                    <br>The query above will perform a case sensitive search for 'term' and 'a phrase' in the body, title, and meta-description of documents. 15 results will be displayed per page and the results will be sorted by file size.</li>
+            </ul>
+        </div>
+		<p class="pageCenter"><a href="#form">Back to Search Form</a></p>
+    </div>
+    
+    <div class="bottombar"></div>
+    
+    <footer style="text-align: center; padding: 20px; font-size: 12px; color: #666;">
+        <a href="https://web.archive.org/web/20130805115023/http://www.ksearch.info/" target="_blank" rel="noopener">kSearch v1.7</a> © Copyright 2012, All rights reserved.
+    </footer>
+</body>
+</html>
